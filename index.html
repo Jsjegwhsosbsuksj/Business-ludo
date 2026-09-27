@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BUSINESS LUDO</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script type="module" src="firebase.js"></script>
+  <script defer src="app.js"></script>
+</head>
+
+<body>
+
+<header>
+    <h1>BUSINESS LUDO</h1>
+</header>
+
+<div id="home">
+
+    <button onclick="openTeam('HR')">HR</button>
+
+    <button onclick="openTeam('Marketing')">Marketing</button>
+
+    <button onclick="openTeam('Finance')">Finance</button>
+
+    <button onclick="openTeam('Operations')">Operations</button>
+
+    <button onclick="adminLogin()">Admin</button>
+
+    <button onclick="openBoard()">Live Board</button>
+
+</div>
+
+<div id="teamPage" class="hidden">
+
+<h2 id="clubName"></h2>
+
+<h3 id="caseNumber"></h3>
+
+<div id="caseStudy"></div>
+
+<div id="dataset"></div>
+
+<div id="questions"></div>
+
+<textarea id="answer"></textarea>
+
+<button onclick="submitAnswer()">Finish</button>
+
+<p id="status"></p>
+
+</div>
+
+<div id="adminPage" class="hidden">
+
+<h2>Admin Dashboard</h2>
+
+<div id="pendingAnswers"></div>
+
+</div>
+
+<div id="boardPage" class="hidden">
+
+<img src="board.png" id="boardImage">
+
+<div id="tokens"></div>
+
+</div>
+
+</body>
+</html>
