@@ -1,72 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>BUSINESS LUDO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUSINESS LUDO</title>
 
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
-  <script type="module" src="firebase.js"></script>
-  <script defer src="app.js"></script>
+    <script type="module" src="firebase.js"></script>
+    <script defer src="app.js"></script>
 </head>
-
 <body>
 
-<header>
-    <h1>BUSINESS LUDO</h1>
-</header>
+    <!-- Header -->
+    <header class="header">
+        <h1>🎲 BUSINESS LUDO</h1>
+        <p>MBA Business Analytics Inter-Club Championship</p>
+    </header>
 
-<div id="home">
+    <!-- ================= HOME PAGE ================= -->
+    <section id="home" class="page active">
 
-    <button onclick="openTeam('HR')">HR</button>
+        <div class="hero">
 
-    <button onclick="openTeam('Marketing')">Marketing</button>
+            <img src="board.png" class="hero-board" alt="Ludo Board">
 
-    <button onclick="openTeam('Finance')">Finance</button>
+            <div class="hero-content">
+                <h2>Welcome to Business Ludo</h2>
+                <p>
+                    Four Clubs • 100 Case Studies • Real-Time Multiplayer • Admin Evaluation
+                </p>
+            </div>
 
-    <button onclick="openTeam('Operations')">Operations</button>
+        </div>
 
-    <button onclick="adminLogin()">Admin</button>
+        <div class="menu-grid">
 
-    <button onclick="openBoard()">Live Board</button>
+            <button class="club hr" onclick="openTeam('HR')">
+                <span>🔵</span>
+                HR TEAM
+            </button>
 
-</div>
+            <button class="club marketing" onclick="openTeam('Marketing')">
+                <span>🩷</span>
+                MARKETING
+            </button>
 
-<div id="teamPage" class="hidden">
+            <button class="club finance" onclick="openTeam('Finance')">
+                <span>🟢</span>
+                FINANCE
+            </button>
 
-<h2 id="clubName"></h2>
+            <button class="club operations" onclick="openTeam('Operations')">
+                <span>🟠</span>
+                OPERATIONS
+            </button>
 
-<h3 id="caseNumber"></h3>
+        </div>
 
-<div id="caseStudy"></div>
+        <div class="bottom-buttons">
+            <button class="admin-btn" onclick="adminLogin()">
+                🔐 Admin Dashboard
+            </button>
 
-<div id="dataset"></div>
+            <button class="board-btn" onclick="openBoard()">
+                🎯 Live Ludo Board
+            </button>
+        </div>
 
-<div id="questions"></div>
+    </section>
 
-<textarea id="answer"></textarea>
 
-<button onclick="submitAnswer()">Finish</button>
+    <!-- ================= TEAM PAGE ================= -->
 
-<p id="status"></p>
+    <section id="teamPage" class="page hidden">
 
-</div>
+        <div class="topbar">
 
-<div id="adminPage" class="hidden">
+            <button class="back" onclick="goHome()">← Home</button>
 
-<h2>Admin Dashboard</h2>
+            <div class="team-title">
+                <h2 id="clubName">HR TEAM</h2>
+                <p id="caseNumber">Case Study 1</p>
+            </div>
 
-<div id="pendingAnswers"></div>
+        </div>
 
-</div>
+        <div class="case-card">
 
-<div id="boardPage" class="hidden">
+            <h3>📘 Business Case</h3>
+            <div id="caseStudy"></div>
 
-<img src="board.png" id="boardImage">
+        </div>
 
-<div id="tokens"></div>
+        <div class="dataset-card">
 
-</div>
+            <h3>📊 Business Analytics Dataset</h3>
+            <div id="dataset"></div>
+
+        </div>
+
+        <div class="question-card">
+
+            <h3>❓ Questions</h3>
+            <div id="questions"></div>
+
+        </div>
+
+        <div class="answer-card">
+
+            <h3>✍ Submit Your Business Solution</h3>
+
+            <textarea
+                id="answer"
+                placeholder="Write your complete business analytics solution here..."></textarea>
+
+            <button class="finish-btn" onclick="submitAnswer()">
+                ✅ Finish & Send to Admin
+            </button>
+
+            <div id="status" class="status waiting">
+                Waiting for submission...
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= ADMIN PAGE ================= -->
+
+    <section id="adminPage" class="page hidden">
+
+        <div class="topbar">
+            <button class="back" onclick="goHome()">← Home</button>
+            <h2>Admin Dashboard</h2>
+        </div>
+
+        <div class="stats">
+
+            <div class="stat blue">
+                <h3 id="hrProgress">0</h3>
+                <p>HR</p>
+            </div>
+
+            <div class="stat pink">
+                <h3 id="mkProgress">0</h3>
+                <p>Marketing</p>
+            </div>
+
+            <div class="stat green">
+                <h3 id="fnProgress">0</h3>
+                <p>Finance</p>
+            </div>
+
+            <div class="stat orange">
+                <h3 id="opProgress">0</h3>
+                <p>Operations</p>
+            </div>
+
+        </div>
+
+        <h3 class="pending-title">📩 Pending Team Answers</h3>
+
+        <div id="pendingAnswers"></div>
+
+    </section>
+
+
+
+    <!-- ================= LIVE BOARD ================= -->
+
+    <section id="boardPage" class="page hidden">
+
+        <div class="topbar">
+            <button class="back" onclick="goHome()">← Home</button>
+            <h2>Live Business Ludo Board</h2>
+        </div>
+
+        <div class="board-layout">
+
+            <div class="scoreboard">
+
+                <h3>🏆 Live Progress</h3>
+
+                <div class="team-score hr">
+                    HR
+                    <span id="hrScore">0</span>
+                </div>
+
+                <div class="team-score marketing">
+                    Marketing
+                    <span id="mkScore">0</span>
+                </div>
+
+                <div class="team-score finance">
+                    Finance
+                    <span id="fnScore">0</span>
+                </div>
+
+                <div class="team-score operations">
+                    Operations
+                    <span id="opScore">0</span>
+                </div>
+
+            </div>
+
+            <div class="board-wrapper">
+
+                <img src="board.png" id="boardImage">
+
+                <div id="tokens">
+
+                    <div id="hrToken" class="token blue"></div>
+
+                    <div id="mkToken" class="token pink"></div>
+
+                    <div id="fnToken" class="token green"></div>
+
+                    <div id="opToken" class="token orange"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </body>
 </html>
